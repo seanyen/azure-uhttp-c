@@ -50,6 +50,20 @@ jobs:
   - script: cd .. && rd /Q /S $(Agent.BuildDirectory)\s
     displayName: 'cleanup'
     condition: always()
+- job: raspberrypi
+  variables:
+    _PREVIEW_VSTS_DOCKER_IMAGE: "aziotbld/raspberrypi-c"
+  pool: aziotbld-lin01
+  displayName: raspberrypi
+  steps:
+  - script: |
+     if [ -f "jenkins/raspberrypi_c.sh" ]
+     then
+      sudo ./jenkins/raspberrypi_c.sh
+     fi 
+    displayName: 'build'  
+  - script: sudo rm -rf $(Agent.BuildDirectory)/*
+    displayName: 'cleanup'
 - job: gcc44
   variables:
     _PREVIEW_VSTS_DOCKER_IMAGE: "aziotbld/linux-c-ubuntu-gcc4.4"
