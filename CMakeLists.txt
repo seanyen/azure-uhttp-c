@@ -140,6 +140,8 @@ endif()
 # Install uhttp
 set(package_location "cmake")
 
+include(GNUInstallDirs)
+
 if(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     set(CMAKE_INSTALL_LIBDIR "lib")
 endif()
